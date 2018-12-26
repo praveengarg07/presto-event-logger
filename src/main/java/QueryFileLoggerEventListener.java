@@ -31,7 +31,9 @@ public class QueryFileLoggerEventListener implements EventListener{
 			queryCompletedEvent.getStatistics().getAnalysisTime() + " : " +
 			queryCompletedEvent.getStatistics().getDistributedPlanningTime() + " : " +
 			queryCompletedEvent.getStatistics().getCpuTime().toMillis() + " : " +
-			queryCompletedEvent.getStatistics().getPeakMemoryBytes());
-		logger.info(queryCompletedEvent.getStatistics().getOperatorSummaries());
+			queryCompletedEvent.getStatistics().getPeakUserMemoryBytes());
+		queryCompletedEvent.getStatistics().getOperatorSummaries().forEach(x -> {
+			logger.info(x);
+		});
 	}
 }
